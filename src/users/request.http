@@ -1,10 +1,19 @@
 ### Create a new user
+POST http://localhost:3000/auth/signup
+content-type: application/json
+
+{
+    "email": "email@test.com",
+    "password": "12345"
+}
+
+### Sign in as an existing user
 POST http://localhost:3000/auth/signin
 content-type: application/json
 
 {
-    "email": "vdvfd@asdf.com",
-    "password": "43534543"
+    "email": "email@test.com",
+    "password": "12345"
 }
 
 ### Find a particular user with id
@@ -23,3 +32,9 @@ content-type: application/json
 {
     "password": "bbbbbb"
 }
+
+### Set a color
+GET http://localhost:3000/auth/colors/blue
+
+### Get the color
+GET http://localhost:3000/auth/colors
