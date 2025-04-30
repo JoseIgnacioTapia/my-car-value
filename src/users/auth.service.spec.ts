@@ -56,4 +56,30 @@ describe('AuthService', () => {
       service.signin('vdgscdgs@vfgh.com', 'vgcsdfb'),
     ).rejects.toThrow(NotFoundException);
   });
+
+  it('throws if an invalid password is provided', (done) => {
+    fakeUsersService.find = () =>
+      Promise.resolve([
+        { email: 'asdf@asdf.com', password: 'correct-password' } as User,
+      ]);
+
+    service.signin('fdfgdgf@hjjhkj.com', 'wrong-password').catch((error) => {
+      try {
+        expect(error).toBeInstanceOf(BadRequestException);
+        done();
+      } catch (assertionError) {
+        done(assertionError);
+      }
+    });
+  });
+
+  it('Returns a user if correct password is provided', async () => {
+    fakeUsersService.find = () =>
+      Promise.resolve([
+        { email: 'sdsds@fds.com', password: 'hashed-password' } as User,
+      ]);
+
+    const user = await service.signin('asdf@asdf.com', 'hsdflkhp');
+    expect(user).toBeDefined();
+  });
 });
