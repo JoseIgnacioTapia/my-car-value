@@ -9,6 +9,8 @@ import {
 } from 'typeorm';
 import { Report } from '../reports/report.entity';
 
+console.log(Report);
+
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
