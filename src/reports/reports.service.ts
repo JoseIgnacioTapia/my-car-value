@@ -16,10 +16,10 @@ export class ReportsService {
       .select('AVG(price)', 'price')
       .where('make = :make', { make })
       .andWhere('model = :model', { model })
-      .andWhere('lng - :lg BETWEEN -5 AND 5', { lng })
+      .andWhere('lng - :lng BETWEEN -5 AND 5', { lng })
       .andWhere('lat - :lat BETWEEN -5 AND 5', { lat })
       .andWhere('year - :year BETWEEN -3 AND 3', { year })
-      .orderBy('ABS(milage - :mileage)', 'DESC')
+      .orderBy('ABS(mileage - :mileage)', 'DESC')
       .setParameters({ mileage })
       .limit(3)
       .getRawOne();
